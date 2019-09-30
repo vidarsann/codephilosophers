@@ -38,12 +38,24 @@ thumbDown.addEventListener("click", function(){             // Ändrar färg på
 )
 
 let slideIndex = 1;
+let slidePics = document.getElementsByClassName("slides");
 
-function slideshow(){
-    if (slideIndex===1){
-        document.querySelectorAll("img")[1].style.display = "block";
+slideShow();                                                //Kallar funktionen "slideshow" från nedan när sidan körs
+
+function slideShow(){                                       //Gör så man kan bläddra igenom flera bilder på samma plats på hemsidan
+    if(slideIndex<1){slideIndex=slidePics.length}
+    if(slideIndex>slidePics.length){slideIndex=1}
+    for(let i=0; i<slidePics.length;i++){
+        slidePics[i].style.display="none";
     }
+    slidePics[slideIndex-1].style.display = "inline";
 }
+
+document.getElementById("nextPic").addEventListener("click", function (){       //Gör så det blir nästa bild i slideshowen vid knapptryck på "nextPic"
+    slideIndex++;
+    slideShow();
+}
+)
 
 function saveRecipe() {
     // document.forms[0].children[0].value is the value
@@ -54,3 +66,5 @@ function saveRecipe() {
 
 //let myObj = [{img: "https://ksjkjsdhf", likes: 0}, {img: "https://jhgjhg", likes: 1}]
 myObj = JSON.parse(localStorage.getItem('recipes'))
+
+// myObj.forEach(function (recept) {console.log(recept.likes)})
