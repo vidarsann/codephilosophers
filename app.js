@@ -57,6 +57,12 @@ document.getElementById("nextPic").addEventListener("click", function (){       
 }
 )
 
+document.getElementById("previousPic").addEventListener("click",function(){     //Gör så det blir förra bilden i slideshowen vid knapptryck på "previousPic"
+    slideIndex--;
+    slideShow();
+}
+)
+
 function saveRecipe() {
     // document.forms[0].children[0].value is the value
     console.log(document.forms[0].children[0].value)
