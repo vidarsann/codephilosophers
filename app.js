@@ -69,24 +69,41 @@ document.getElementById("previousPic").addEventListener("click",function(){     
 
 //Nedan är all kod för receptfunktionen
 
-let nameInput = document.getElementById("nameText");                         
-let submitButton = document.getElementById("submit");
-let submitArray = [];
+let nameInput = document.getElementById("nameText");                                                    //Binder värdet från textlådan "nameText", alltså där man skriver in sitt namn
+let commentInput = document.getElementById("commentText");                                              //Binder till värdet från textlådan "commentText", alltså där man skriver in sin kommentar
+let submitButton = document.getElementById("submit");                                                   //Binder variabeln till knappen "submit" i HTML
+let nameArray = [];                                                                                     //Skapar en array att lagra alla namn i
+let commentArray = [];                                                                                  //Skapar en array att lagra alla kommentarer i
+let arrayCounter = 0;                                                                                   //En variabel för att räkna vilket nummer man är på i samtliga arrays. Behövs för att spara varje namn och kommentar till en egen, unik plats i arraysen
 
+submitButton.addEventListener("click", writeComment)                                                    //Gör att funktionen nedan körs när submit blir klickad
 
-submitButton.addEventListener("click", saveComment);
+function writeComment(){                                                                                //Skapar ett kommentarsfält med plats för namn och kommentar
+    if(commentInput.value === "" || nameInput.value ===""){                                             //if-statementet gör att båda fält måste ha något värde för att kunna posta en kommentar
+        window.alert("You must enter a name and a comment before submitting!");
+    }
+    else{
+        nameArray.push(nameInput.value);                                                                //Pushar värdet från namn-textlådan in i nameArray
+        commentArray.push(commentInput.value);                                                          //Pushar värdet från comment-textlådan in i commentArray
 
-function saveComment(){
-    let createComment = document.createTextNode(nameInput.value);
-    let createNamePara = document.createElement("P");
-    createNamePara.appendChild(createComment);
-    document.body.appendChild(createNamePara);
+        let commenterName = document.createTextNode("Name: " + nameArray[arrayCounter]);                //Skapar en text med innehållet "Name: >inskrivet namn<"
+        let createNamePara = document.createElement("P");                                               //Binder en variabel till att skapa en p-tag i HTML
+        let commenterText = document.createTextNode("Comment: " + commentArray[arrayCounter]);          //Skapar en text med innehållet "Comment: >inskriven kommentar<"
+        let createCommentPara = document.createElement("P");                                            //Binder en variabel till att skapa ytterligare en p-tag i HTML
+        let createDiv = document.createElement("div");                                                  //Binder en variabel att skapa en div-tag i html
 
-    submitArray.push(nameInput.value);
-    nameInput.value = "";
+        createDiv.setAttribute("class", "commentFieldDiv");                                             //Ger diven klassen "commentFieldDiv" när den skapas (för att särskilja kommentarerna och kunna styleas i CSS)
+        
+        document.body.appendChild(createDiv);                                                           //Lägger in den skapade diven under body i HTML
+        let divClassName = document.getElementsByClassName("commentFieldDiv");
+        createNamePara.appendChild(commenterName);                                                      //Skapar p-tagen från createNamePara och ger den värdet från commenterName
+        divClassName[arrayCounter].appendChild(createNamePara);                                         //Lägger in p-tagen under body i HTML
+        createCommentPara.appendChild(commenterText);                                                   //Skapar p-tagen från createCommentPara och ger den värdet från commenterText
+        divClassName[arrayCounter].appendChild(createCommentPara);                                      //Lägger in p-tagen under body i HTML
 
-    for(let i = 0; i < submitArray.length; i++){
-        console.log(submitArray[i]);
+        nameInput.value = "";                                                                           //Tömmer input-rutan i HTML för "Name"
+        commentInput.value = "";                                                                        //Tömmer input-rutan i HTML för "Comment"
+        arrayCounter++;                                                                                 //Lägger till +1 på arrayCounter varje gång en kommentar postas
     }
 }
 
