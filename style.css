@@ -4,11 +4,12 @@ button{
     padding: 10px;
     }
 
-instructions{
-    background-color: blue;
-}
-
 .slides{
     width: 500px;
     height: 400px;
+}
+
+#commentText{
+    width: 300px;
+    height: 150px;
 }

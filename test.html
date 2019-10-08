@@ -10,11 +10,6 @@
 <body>
     <button id="buttonUp">0 likes</button>
     <button id="buttonDown">0 dislikes</button>
-
-    <form name="recipe" onsubmit="return saveRecipe();">
-        <input type="text" name="nameOfRecipe">
-        <input type="submit" id="send" name="recipeSubmit">
-    </form>
     <div>
         <img class="slides" src="https://img.theculturetrip.com/450x/wp-content/uploads/2015/04/shutterstock_630594902.jpg" id="japan">
         <img class="slides" src="https://www.visitsmaland.se/thumbs/sv/upplevelser/natur-och-aventyr/granna-och-visingso/_39a3973-f7703c964349e0455a6504663063fbf4-2000x1333.jpg" id="sverige">
@@ -22,6 +17,13 @@
     </div>
     <button id="previousPic">Previous picture</button>
     <button id="nextPic">Next picture</button>
-    <script src = "app.js"></script>
+    <div id="commentField">
+        <h4>Namn:</h4>
+        <input type="text" id="nameText"></input>
+        <h4>Kommentar:</h4>
+        <input type="text" id="commentText"></input><br>
+        <button id="submit">Submit</button>
+        <script src = "app.js"></script>
+    </div>
 </body>
 </html>

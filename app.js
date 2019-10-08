@@ -1,3 +1,5 @@
+//Nedan är all kod för likefunktionen
+
 let thumbUp = document.getElementById("buttonUp");          //Binder knappen buttonUp till variablen thumbUp
 let thumbDown = document.getElementById("buttonDown");      //Binder knappen buttonDown till variablen thumbDown
 let upIndex = 0;                                            //Likeräknare, behövs ej fler för en hemsida för en person : )
@@ -37,6 +39,8 @@ thumbDown.addEventListener("click", function(){             // Ändrar färg på
     }
 )
 
+//Nedan är all kod för slideshowfunktionen
+
 let slideIndex = 1;
 let slidePics = document.getElementsByClassName("slides");
 
@@ -63,14 +67,37 @@ document.getElementById("previousPic").addEventListener("click",function(){     
 }
 )
 
-function saveRecipe() {
-    // document.forms[0].children[0].value is the value
+//Nedan är all kod för receptfunktionen
+
+let nameInput = document.getElementById("nameText");                         
+let submitButton = document.getElementById("submit");
+let submitArray = [];
+
+
+submitButton.addEventListener("click", saveComment);
+
+function saveComment(){
+    let createComment = document.createTextNode(nameInput.value);
+    let createNamePara = document.createElement("P");
+    createNamePara.appendChild(createComment);
+    document.body.appendChild(createNamePara);
+
+    submitArray.push(nameInput.value);
+    nameInput.value = "";
+
+    for(let i = 0; i < submitArray.length; i++){
+        console.log(submitArray[i]);
+    }
+}
+
+/*function saveRecipe() {
+    document.forms[0].children[0].value is the value
     console.log(document.forms[0].children[0].value)
     return false;
 }
 
 
-//let myObj = [{img: "https://ksjkjsdhf", likes: 0}, {img: "https://jhgjhg", likes: 1}]
+let myObj = [{img: "https://ksjkjsdhf", likes: 0}, {img: "https://jhgjhg", likes: 1}]
 myObj = JSON.parse(localStorage.getItem('recipes'))
 
-// myObj.forEach(function (recept) {console.log(recept.likes)})
+myObj.forEach(function (recept) {console.log(recept.likes)})*/
